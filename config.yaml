@@ -24,12 +24,12 @@ options:
   rs485_remote_ip: ""
   rs485_remote_port: 4196
   serial_interface: "/dev/ttyUSB1"
-  number_of_packs: 1
+  number_of_packs: 4
   min_cell_voltage: 2.5
   max_cell_voltage: 3.65
   mqtt_topic: "seplos"
-  mqtt_update_interval: 1
-  enable_ha_discovery: true
+  mqtt_update_interval: 10
+  enable_ha_discovery: false
   ha_discovery_prefix: "homeassistant"
   invert_ha_dis_charge_measurements: false
   logging_level: "info"
