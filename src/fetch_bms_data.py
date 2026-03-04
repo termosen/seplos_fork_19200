@@ -1115,7 +1115,10 @@ def initialize_mqtt() -> mqtt.Client:
 def initialize_serial() -> serial.Serial:
     """Initialize serial connection."""
     try:
-        baudrate = 9600 if Config.NUMBER_OF_PACKS > 1 else 19200
+        forced_baud = config.get('baudrate', 0)  # assuming config loaded as dict
+        if forced_baud > 0: baudrate = forced_baud
+        elif number_of_packs > 1: baudrate = 9600
+        else: baudrate = 19200
         logger.info(
             "Initializing serial interface %s at %s baud",
             Config.SERIAL_INTERFACE,
