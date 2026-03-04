@@ -1112,21 +1112,10 @@ def initialize_mqtt() -> mqtt.Client:
         logger.error("MQTT connection failed: %s", e)
         sys.exit(1)
 
-
 def initialize_serial() -> serial.Serial:
     """Initialize serial connection."""
-try:
-    force_baud = int(force_baud_str)
-except ValueError:
-    force_baud = 0
-
-if force_baud > 0:
-    baudrate = force_baud
-    print(f"Using forced baudrate: {baudrate}")
-elif number_of_packs > 1:
-    baudrate = 9600
-else:
-    baudrate = 19200
+    try:
+        baudrate = 19200 if Config.NUMBER_OF_PACKS > 1 else 19200
         logger.info(
             "Initializing serial interface %s at %s baud",
             Config.SERIAL_INTERFACE,
